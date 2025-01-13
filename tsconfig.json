@@ -1,0 +1,28 @@
+{
+  "files": [],
+  "compilerOptions": {
+    /* Path Alias */
+    "baseUrl": "src",
+    "paths": {
+      "@/*": ["*"],
+      "@pages/*": ["pages/*"],
+      "@components/*": ["components/*"],
+      "@layout/*": ["components/layout/*"],
+      "@common/*": ["components/common/*"],
+      "@styles/*": ["styles/*"],
+      "@constants/*": ["constants/*"],
+      "@types/*": ["types/*"],
+      "@stores/*": ["stores/*"],
+      "@contexts/*": ["contexts/*"]
+    },
+    "types": ["vite/client"]
+  },
+  "references": [
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ]
+}
