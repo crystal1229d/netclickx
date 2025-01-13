@@ -1,0 +1,32 @@
+.navbar {
+  margin-right: auto;
+  display: flex;
+}
+
+.navbar ul {
+  display: flex;
+  gap: 30px;
+  list-style: none;
+}
+
+.navbar ul li {
+  margin-top: 10px;
+
+  color: var(--light-gray);
+  font-size: 1.1rem;
+  font-weight: 200;
+  text-decoration: none;
+  border: none;
+  padding: 0 0 7px;
+
+  cursor: pointer;
+}
+.navbar ul li.active {
+  color: var(--white);
+}
+
+@media (max-width: 844px) {
+  .navbar {
+    display: none;
+  }
+}

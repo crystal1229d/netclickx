@@ -1,3 +1,3 @@
 export default function MyListPage() {
-  return <main>MyListPage</main>
+  return <div>MyListPage</div>
 }
