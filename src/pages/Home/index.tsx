@@ -23,13 +23,13 @@ export default function HomePage() {
   const handleMovieClick = (movie: Movie) => {
     openModal(
       <div>
-        <h2>{movie.title}</h2>
-        <p>{movie.overview}</p>
         <img
           src={`${import.meta.env.VITE_TMDB_IMAGE_BASE_URL}w500/${movie.backdrop_path}`}
           alt={movie.title}
           className={styles.modalImage}
         />
+        <h2>{movie.title}</h2>
+        <p>{movie.overview}</p>
       </div>
     )
   }
