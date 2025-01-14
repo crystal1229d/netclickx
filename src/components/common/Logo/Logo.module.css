@@ -5,7 +5,7 @@
 
   font-size: 50px;
   font-weight: 800;
-  color: rgb(196, 30, 58);
+  color: var(--red);
 
   text-transform: uppercase;
 

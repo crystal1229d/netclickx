@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { HiOutlineMagnifyingGlass } from 'react-icons/hi2'
 import styles from './Search.module.css'
 
 export default function Search() {
@@ -24,9 +25,11 @@ export default function Search() {
         type="text"
         value={keyword}
         onChange={handleKeywordChange}
-        placeholder="Search..."
+        placeholder="Search . . ."
       />
-      <button type="submit">Search</button>
+      <button type="submit">
+        <HiOutlineMagnifyingGlass size="1.4rem" />
+      </button>
     </form>
   )
 }

@@ -2,6 +2,7 @@ import React from 'react'
 import Header from '@layout/Header'
 import Footer from '@layout/Footer'
 import styles from './Layout.module.css'
+import ButtonMyList from '@/components/common/ButtonMyList'
 
 interface Props {
   children: React.ReactNode
@@ -13,6 +14,7 @@ export default function Layout({ children }: Props) {
       <Header />
       <main>{children}</main>
       <Footer />
+      <ButtonMyList />
     </div>
   )
 }
