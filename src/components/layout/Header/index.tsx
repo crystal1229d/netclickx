@@ -1,5 +1,6 @@
-import Logo from '@/components/common/Logo'
-import Navbar from '../Navbar'
+import Logo from '@common/Logo'
+import Navbar from '@layout/Navbar'
+import Search from '@common/Search'
 import styles from './Header.module.css'
 
 export default function Header() {
@@ -7,10 +8,7 @@ export default function Header() {
     <header className={styles.wrapper}>
       <Logo />
       <Navbar />
-      <div>
-        <input type="text" />
-        <button type="button">Search</button>
-      </div>
+      <Search />
     </header>
   )
 }
