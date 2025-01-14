@@ -2,10 +2,12 @@ import { useEffect, useState } from 'react'
 import { fetchTrendingMovies } from '@/services/movies'
 import { Movie } from '@/types'
 import styles from './Home.module.css'
+import { useModalContext } from '@/contexts/ModalContext'
 
 export default function HomePage() {
   const [movies, setMovies] = useState<Movie[]>([])
   const [loading, setLoading] = useState<boolean>(false)
+  const { openModal } = useModalContext()
 
   useEffect(() => {
     const getMovies = async () => {
@@ -17,6 +19,20 @@ export default function HomePage() {
 
     getMovies()
   }, [])
+
+  const handleMovieClick = (movie: Movie) => {
+    openModal(
+      <div>
+        <h2>{movie.title}</h2>
+        <p>{movie.overview}</p>
+        <img
+          src={`${import.meta.env.VITE_TMDB_IMAGE_BASE_URL}w500/${movie.backdrop_path}`}
+          alt={movie.title}
+          className={styles.modalImage}
+        />
+      </div>
+    )
+  }
 
   if (loading) {
     return <p className={styles.loading}>Loading...</p>
@@ -33,9 +49,10 @@ export default function HomePage() {
         {movies.map(movie => (
           <li
             key={movie.id}
-            className={styles.movieCard}>
+            className={styles.movieCard}
+            onClick={() => handleMovieClick(movie)}>
             <img
-              src={`${import.meta.env.VITE_TMDB_IMAGE_BASE_URL}w300/${movie.poster_path}`}
+              src={`${import.meta.env.VITE_TMDB_IMAGE_BASE_URL}w185/${movie.poster_path}`}
               alt={movie.title}
               className={styles.moviePoster}
             />
