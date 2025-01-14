@@ -1,0 +1,33 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  border-bottom: 1px solid var(--white);
+}
+
+.wrapper input {
+  width: 200px;
+  height: 40px;
+  padding: 7px 10px;
+  border: none;
+  background: transparent;
+  color: var(--white);
+
+  outline: none;
+}
+.wrapper input:focus {
+  outline: none;
+}
+
+.wrapper button {
+  height: 40px;
+  padding: 7px 10px;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--white);
+  cursor: pointer;
+}
+.wrapper button:hover {
+  opacity: 0.6;
+  transform: scale(1.1);
+}

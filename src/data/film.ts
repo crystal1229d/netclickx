@@ -1,8 +1,8 @@
 export const FILMS = [
   {
     movieCd: 71690512,
-    movieNm: 'Movie 0',
-    movieNmEn: 'Final left personal',
+    movieNm: '월레스와 그로밋 - 복수의 날개',
+    movieNmEn: 'Wallace&Gromit - Vengeance most fowl',
     prdtYear: '2001',
     openDt: '20061130',
     typeNm: '장편',
@@ -23,8 +23,8 @@ export const FILMS = [
   },
   {
     movieCd: 89511308,
-    movieNm: 'Movie 1',
-    movieNmEn: 'Outside try',
+    movieNm: '애브리씽 애브리웨어 올앳원스',
+    movieNmEn: 'Everything Everywhere All at once',
     prdtYear: '1982',
     openDt: '19961205',
     typeNm: '단편',
@@ -39,8 +39,8 @@ export const FILMS = [
   },
   {
     movieCd: 13907556,
-    movieNm: 'Movie 2',
-    movieNmEn: 'Good',
+    movieNm: '헤어질 결심',
+    movieNmEn: 'Decision to leave',
     prdtYear: '1990',
     openDt: '19940411',
     typeNm: '장편',
@@ -55,8 +55,8 @@ export const FILMS = [
   },
   {
     movieCd: 52769515,
-    movieNm: 'Movie 3',
-    movieNmEn: 'Today forget speak',
+    movieNm: '서브스턴스',
+    movieNmEn: 'Substance',
     prdtYear: '2013',
     openDt: '20130917',
     typeNm: '장편',
@@ -75,8 +75,8 @@ export const FILMS = [
   },
   {
     movieCd: 24395287,
-    movieNm: 'Movie 4',
-    movieNmEn: 'Once how bit',
+    movieNm: '돈 룩 업',
+    movieNmEn: 'Dont look up',
     prdtYear: '1987',
     openDt: '19901129',
     typeNm: '장편',
@@ -97,8 +97,8 @@ export const FILMS = [
   },
   {
     movieCd: 95713738,
-    movieNm: 'Movie 5',
-    movieNmEn: 'Act food',
+    movieNm: '추락의 해부',
+    movieNmEn: 'Anatomy of a Fall',
     prdtYear: '2024',
     openDt: '19850729',
     typeNm: '단편',
@@ -113,8 +113,8 @@ export const FILMS = [
   },
   {
     movieCd: 32770429,
-    movieNm: 'Movie 6',
-    movieNmEn: 'Address detail something',
+    movieNm: '롱레그스',
+    movieNmEn: 'Long legs',
     prdtYear: '2019',
     openDt: '19860521',
     typeNm: '단편',
