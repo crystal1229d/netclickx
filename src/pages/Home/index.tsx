@@ -56,7 +56,7 @@ export default function HomePage() {
               key={movie.id}
               movie={movie}
               onSingleClick={handleSingleClick}
-              onDoubleClick={handleDoubleClick}
+              onDoubleClick={() => handleDoubleClick(movie)}
             />
           ))}
         </ul>

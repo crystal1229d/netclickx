@@ -6,10 +6,16 @@ import styles from './Card.module.css'
 interface Props {
   movie: Movie
   onSingleClick: (movie: Movie) => void
-  onDoubleClick: (movie: Movie) => void
+  onDoubleClick: (movie: Movie | Movie['id']) => void
+  className?: string
 }
 
-export default function Card({ movie, onSingleClick, onDoubleClick }: Props) {
+export default function Card({
+  movie,
+  onSingleClick,
+  onDoubleClick,
+  className
+}: Props) {
   const { title, poster_path } = movie
 
   const handleClick = useClick<Movie>({
@@ -19,7 +25,7 @@ export default function Card({ movie, onSingleClick, onDoubleClick }: Props) {
 
   return (
     <li
-      className={styles.card}
+      className={`${styles.card} ${className || ''}`}
       onClick={() => handleClick(movie)}>
       <Poster
         src={`${import.meta.env.VITE_TMDB_IMAGE_BASE_URL}w185/${poster_path}`}
