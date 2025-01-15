@@ -1,16 +1,30 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { TiStarOutline, TiStar } from 'react-icons/ti'
-import { useMoviesStore } from '@/stores/movie'
-import ConditionalRender from '@common/ConditionalRender'
-import styles from './ButtonMyList.module.css'
-import Card from '../Card'
 import { Movie } from '@/types'
+import { useMoviesStore } from '@/stores/movie'
 import { useModalContext } from '@/contexts/ModalContext'
+import ConditionalRender from '@common/ConditionalRender'
+import Card from '@common/Card'
+import styles from './ButtonMyList.module.css'
 
 export default function ButtonMyList() {
   const [isOpen, setIsOpen] = useState(false)
   const { openModal } = useModalContext()
-  const { removeMovie, selectedMovies } = useMoviesStore()
+  const {
+    removeMovie,
+    selectedMovies,
+    isMyListBtnBouncing,
+    setIsMyListBtnBouncing
+  } = useMoviesStore()
+
+  useEffect(() => {
+    if (isMyListBtnBouncing) {
+      const timeout = setTimeout(() => {
+        setIsMyListBtnBouncing(false)
+      }, 500)
+      return () => clearTimeout(timeout)
+    }
+  }, [isMyListBtnBouncing, setIsMyListBtnBouncing])
 
   const toggleList = () => {
     setIsOpen(prev => !prev)
@@ -40,7 +54,7 @@ export default function ButtonMyList() {
     <>
       <button
         type="button"
-        className={styles.floatingButton}
+        className={`${styles.floatingButton} ${isMyListBtnBouncing ? styles.animate : ''}`}
         onClick={toggleList}>
         {isOpen ? <TiStarOutline size="2rem" /> : <TiStar size="2rem" />}
       </button>
