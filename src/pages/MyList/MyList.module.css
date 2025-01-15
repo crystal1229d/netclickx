@@ -13,7 +13,10 @@
 
 .list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 150px));
+  /* grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); */
+  grid-template-columns: repeat(auto-fit, 150px);
+  justify-content: center;
+  justify-items: center;
   gap: 20px;
 
   list-style: none;
