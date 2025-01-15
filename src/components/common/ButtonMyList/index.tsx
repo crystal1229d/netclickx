@@ -1,6 +1,7 @@
 import { useState } from 'react'
-import { FiStar } from 'react-icons/fi'
+import { TiStarOutline, TiStar } from 'react-icons/ti'
 import { useMoviesStore } from '@/stores/movie'
+import ConditionalRender from '@common/ConditionalRender'
 import styles from './ButtonMyList.module.css'
 
 export default function ButtonMyList() {
@@ -17,36 +18,33 @@ export default function ButtonMyList() {
         type="button"
         className={styles.floatingButton}
         onClick={toggleList}>
-        <FiStar size="1.5rem" />
+        {isOpen ? <TiStarOutline size="2rem" /> : <TiStar size="2rem" />}
       </button>
       {isOpen && (
         <div className={styles.floatingPanel}>
-          {selectedMovies.length === 0 ? (
-            <div className={styles.noData}>
-              <h3>My Movies</h3>
-              <p>No movies added yet.</p>
-            </div>
-          ) : (
-            <ul className={styles.movieList}>
-              {selectedMovies.map(movie => (
-                <li
-                  key={movie.id}
-                  className={styles.movieCard}>
-                  <img
-                    src={`${import.meta.env.VITE_TMDB_IMAGE_BASE_URL}w92/${movie.poster_path}`}
-                    alt={movie.title}
-                    className={styles.moviePoster}
-                  />
-                  <div className={styles.movieInfo}>
-                    <h3 className={styles.movieTitle}>{movie.title}</h3>
-                    <p className={styles.movieReleaseDate}>
-                      {movie.release_date}
-                    </p>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          )}
+          <ConditionalRender
+            items={selectedMovies}
+            render={movies => (
+              <ul className={styles.list}>
+                {movies.map(({ id, title, poster_path }) => (
+                  <li
+                    key={id}
+                    className={styles.card}>
+                    <img
+                      src={`${import.meta.env.VITE_TMDB_IMAGE_BASE_URL}w185/${poster_path}`}
+                      alt={title}
+                      className={styles.poster}
+                    />
+                    <div className={styles.info}>
+                      <h3 className={styles.title}>{title}</h3>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            )}
+            emptyMessage="No Movies or TV series added yet."
+            emptyTextColor="black"
+          />
         </div>
       )}
     </>
