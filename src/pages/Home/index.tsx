@@ -2,8 +2,9 @@ import { useEffect, useState } from 'react'
 import { fetchTrendingMovies } from '@/services/movies'
 import { Movie } from '@/types'
 import { useModalContext } from '@/contexts/ModalContext'
-import { useClick } from '@/hooks/useClick'
 import { useMoviesStore } from '@/stores/movie'
+import ListSkeleton from '@common/ListSkeleton'
+import Card from '@common/Card'
 import styles from './Home.module.css'
 
 export default function HomePage() {
@@ -24,15 +25,17 @@ export default function HomePage() {
   }, [])
 
   const handleSingleClick = (movie: Movie) => {
+    const { title, backdrop_path, overview } = movie
+
     openModal(
       <div>
         <img
-          src={`${import.meta.env.VITE_TMDB_IMAGE_BASE_URL}w500/${movie.backdrop_path}`}
-          alt={movie.title}
+          src={`${import.meta.env.VITE_TMDB_IMAGE_BASE_URL}w500/${backdrop_path}`}
+          alt={title}
           className={styles.modalImage}
         />
-        <h2>{movie.title}</h2>
-        <p>{movie.overview}</p>
+        <h2>{title}</h2>
+        <p>{overview}</p>
       </div>
     )
   }
@@ -41,40 +44,23 @@ export default function HomePage() {
     addMovie(movie)
   }
 
-  const handleClick = useClick<Movie>({
-    onSingleClick: handleSingleClick,
-    onDoubleClick: handleDoubleClick
-  })
-
-  if (loading) {
-    return <p className={styles.loading}>Loading...</p>
-  }
-
-  if (!movies.length) {
-    return <p className={styles.noData}>No Data</p>
-  }
-
   return (
     <div className={styles.wrapper}>
       <h1 className={styles.title}>Trending Now</h1>
-      <ul className={styles.moviesList}>
-        {movies.map(movie => (
-          <li
-            key={movie.id}
-            className={styles.movieCard}
-            onClick={() => handleClick(movie)}>
-            <img
-              src={`${import.meta.env.VITE_TMDB_IMAGE_BASE_URL}w185/${movie.poster_path}`}
-              alt={movie.title}
-              className={styles.moviePoster}
+      {loading ? (
+        <ListSkeleton count={20} />
+      ) : (
+        <ul className={styles.moviesList}>
+          {movies.map(movie => (
+            <Card
+              key={movie.id}
+              movie={movie}
+              onSingleClick={handleSingleClick}
+              onDoubleClick={() => handleDoubleClick(movie)}
             />
-            <div className={styles.movieInfo}>
-              <h2 className={styles.movieTitle}>{movie.title}</h2>
-              <p className={styles.movieReleaseDate}>{movie.release_date}</p>
-            </div>
-          </li>
-        ))}
-      </ul>
+          ))}
+        </ul>
+      )}
     </div>
   )
 }
