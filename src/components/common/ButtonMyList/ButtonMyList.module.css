@@ -37,8 +37,13 @@
 }
 
 .floatingPanel {
+  height: 266px;
   width: calc(100vw - 120px);
   padding: 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   position: fixed;
   bottom: 10px;
@@ -54,12 +59,12 @@
 .list {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
   gap: 1rem;
 
   padding: 0;
   margin: 0;
   list-style: none;
+  overflow-x: auto;
 }
 
 .card {
