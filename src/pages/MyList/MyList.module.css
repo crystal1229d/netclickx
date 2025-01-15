@@ -11,55 +11,11 @@
   text-align: left;
 }
 
-.loading {
-  font-size: 1.5rem;
-  text-align: center;
-  margin-top: 50px;
-}
-
-.moviesList {
+.list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(100px, 150px));
   gap: 20px;
 
   list-style: none;
   padding: 0;
-}
-
-.movieCard {
-  position: relative;
-  overflow: hidden;
-  border-radius: 8px;
-  background-color: #222;
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
-  cursor: pointer;
-}
-.movieCard:hover {
-  transform: scale(1.05);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-}
-
-.moviePoster {
-  width: 100%;
-  border-radius: 8px 8px 0 0;
-  object-fit: cover;
-}
-
-.movieInfo {
-  padding: 10px;
-  text-align: center;
-}
-
-.movieTitle {
-  font-size: 1rem;
-  font-weight: bold;
-  margin: 0;
-}
-
-.movieReleaseDate {
-  font-size: 0.875rem;
-  color: #bbb;
-  margin: 5px 0 0;
 }

@@ -31,9 +31,6 @@ export default function Card({
         src={`${import.meta.env.VITE_TMDB_IMAGE_BASE_URL}w185/${poster_path}`}
         alt={title}
       />
-      <div className={styles.info}>
-        <h2 className={styles.title}>{title}</h2>
-      </div>
     </li>
   )
 }

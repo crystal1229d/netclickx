@@ -48,10 +48,13 @@
 }
 
 .card {
+  width: 120px;
+  min-height: 226px;
+
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 120px;
+
   text-align: center;
   transition:
     transform 0.3s ease,
@@ -60,19 +63,4 @@
 }
 .card:hover {
   transform: scale(1.05);
-}
-
-.poster {
-  width: 100px;
-  height: 150px;
-  border-radius: 4px;
-  margin-bottom: 0.5rem;
-  object-fit: cover;
-}
-
-.title {
-  font-size: 0.9rem;
-  font-weight: bold;
-  color: #333;
-  margin: 0.3rem 0;
 }

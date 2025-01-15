@@ -13,7 +13,7 @@
 
 .moviesList {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 150px));
+  grid-template-columns: repeat(auto-fit, 150px);
   gap: 20px;
 
   list-style: none;
