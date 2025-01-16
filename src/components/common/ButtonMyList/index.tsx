@@ -12,6 +12,7 @@ import 'swiper/css'
 import 'swiper/css/effect-coverflow'
 import 'swiper/css/pagination'
 import { FreeMode } from 'swiper/modules'
+import Poster from '../Poster'
 
 export default function ButtonMyList() {
   const [isOpen, setIsOpen] = useState(false)
@@ -48,10 +49,9 @@ export default function ButtonMyList() {
 
     openModal(
       <div>
-        <img
+        <Poster
           src={`${import.meta.env.VITE_TMDB_IMAGE_BASE_URL}w500/${backdrop_path}`}
           alt={title}
-          className={styles.modalImage}
         />
         <h2>{title}</h2>
         <p>{overview}</p>

@@ -12,9 +12,6 @@ export default function ListSkeleton({ count = 20 }: Props) {
           key={index}
           className={`${styles.item}`}>
           <div className={styles.poster}></div>
-          <div className={styles.info}>
-            <h2 className={styles.title}></h2>
-          </div>
         </li>
       ))}
     </ul>

@@ -8,6 +8,7 @@ import Card from '@common/Card'
 import InfiniteScroll from '@common/InfiniteScroll'
 import ConditionalRender from '@common/ConditionalRender'
 import styles from './Home.module.css'
+import Poster from '@/components/common/Poster'
 
 export default function HomePage() {
   const [movies, setMovies] = useState<Movie[]>([])
@@ -43,10 +44,9 @@ export default function HomePage() {
 
     openModal(
       <div>
-        <img
+        <Poster
           src={`${import.meta.env.VITE_TMDB_IMAGE_BASE_URL}w500/${backdrop_path}`}
           alt={title}
-          className={styles.modalImage}
         />
         <h2>{title}</h2>
         <p>{overview}</p>
@@ -61,7 +61,7 @@ export default function HomePage() {
   return (
     <div className={styles.wrapper}>
       <h1 className={styles.title}>Trending Now</h1>
-      {loading && movies.length === 0 ? (
+      {loading ? (
         <ListSkeleton count={20} />
       ) : (
         <ConditionalRender

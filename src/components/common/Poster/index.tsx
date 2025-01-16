@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import styles from './Poster.module.css'
 
 interface Props {
@@ -6,12 +7,30 @@ interface Props {
 }
 
 export default function Poster({ src, alt }: Props) {
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    const image = new Image()
+    image.src = src
+
+    image.onload = () => {
+      setIsLoading(false)
+    }
+
+    return () => {
+      image.onload = null
+    }
+  }, [src])
+
   return (
-    <img
-      src={src}
-      alt={alt}
-      loading="lazy"
-      className={`${styles.poster}`}
-    />
+    <div className={styles.posterWrapper}>
+      {isLoading && <div className={styles.skeleton}></div>}
+      <img
+        src={src}
+        alt={alt}
+        className={`${styles.poster} ${isLoading ? styles.loading : styles.loaded}`}
+        loading="lazy"
+      />
+    </div>
   )
 }
