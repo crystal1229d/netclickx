@@ -71,13 +71,13 @@ export default function ButtonMyList() {
             items={selectedMovies}
             render={movies => (
               <Swiper
-                slidesPerView={6}
-                spaceBetween={5}
+                slidesPerView={5}
+                spaceBetween={10}
                 freeMode={true}
                 modules={[FreeMode]}
                 style={{ width: '100%' }}>
                 {movies.map(movie => (
-                  <SwiperSlide>
+                  <SwiperSlide key={movie.id}>
                     <Card
                       key={movie.id}
                       movie={movie}
