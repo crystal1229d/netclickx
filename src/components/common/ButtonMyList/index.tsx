@@ -6,12 +6,11 @@ import { useModalContext } from '@/contexts/ModalContext'
 import ConditionalRender from '@common/ConditionalRender'
 import Card from '@common/Card'
 import styles from './ButtonMyList.module.css'
-import { Swiper, SwiperSlide } from 'swiper/react'
 
+import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/effect-coverflow'
 import 'swiper/css/pagination'
-
 import { FreeMode } from 'swiper/modules'
 
 export default function ButtonMyList() {
