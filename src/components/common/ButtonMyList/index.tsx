@@ -23,6 +23,13 @@ export default function ButtonMyList() {
     setIsMyListBtnBouncing
   } = useMoviesStore()
 
+  const [displayedMovies, setDisplayedMovies] = useState<Movie[]>([])
+  const [visibleCount, setVisibleCount] = useState(7)
+
+  useEffect(() => {
+    setDisplayedMovies(selectedMovies.slice(0, visibleCount))
+  }, [selectedMovies, visibleCount])
+
   useEffect(() => {
     if (isMyListBtnBouncing) {
       const timeout = setTimeout(() => {
@@ -56,6 +63,11 @@ export default function ButtonMyList() {
     removeMovie(id)
   }
 
+  const handleReachEnd = () => {
+    if (visibleCount >= selectedMovies.length) return
+    setVisibleCount(prev => prev + 5)
+  }
+
   return (
     <>
       <button
@@ -67,14 +79,15 @@ export default function ButtonMyList() {
       {isOpen && (
         <div className={styles.floatingPanel}>
           <ConditionalRender
-            items={selectedMovies}
+            items={displayedMovies}
             render={movies => (
               <Swiper
                 slidesPerView="auto"
                 spaceBetween={40}
                 freeMode={true}
                 modules={[FreeMode]}
-                style={{ width: '100%', paddingRight: '40px' }}>
+                style={{ width: '100%', paddingRight: '40px' }}
+                onReachEnd={handleReachEnd}>
                 {movies.map(movie => (
                   <SwiperSlide
                     key={movie.id}

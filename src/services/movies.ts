@@ -1,4 +1,3 @@
-// import { movies } from '@/data/movies'
 import { Movie } from '@/types'
 
 export const fetchTrendingMovies = async (

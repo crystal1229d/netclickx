@@ -34,7 +34,6 @@ export default function HomePage() {
   )
 
   useEffect(() => {
-    console.log('HomePage - loadMovies')
     loadMovies(1)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])

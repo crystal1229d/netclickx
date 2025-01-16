@@ -25,7 +25,7 @@ export default function InfiniteScroll({
   const throttledLoadMore = useCallback(
     throttle(async () => {
       if (loading || !hasMore) return
-      console.log('throttledLoadMore')
+
       const newPage = pageRef.current + 1
       await loadMore(newPage)
       setPage(newPage)
