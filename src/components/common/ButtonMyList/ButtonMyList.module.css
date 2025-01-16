@@ -83,3 +83,8 @@
 .card:hover {
   transform: scale(1.05);
 }
+
+.swiper-slide {
+  width: 120px;
+  flex-shrink: 0;
+}
