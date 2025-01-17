@@ -28,6 +28,7 @@ export default function MediaList({
   const [media, setMedia] = useState<Media[]>([])
   const [loading, setLoading] = useState<boolean>(false)
   const [hasMore, setHasMore] = useState<boolean>(true)
+  const [currentPage, setCurrentPage] = useState<number>(1)
 
   const loadMedia = useCallback(
     async (page: number) => {
@@ -54,10 +55,18 @@ export default function MediaList({
     loadMedia(1)
   }, [])
 
+  const handleReachEnd = () => {
+    if (hasMore && !loading) {
+      const nextPage = currentPage + 1
+      setCurrentPage(nextPage)
+      loadMedia(nextPage)
+    }
+  }
+
   return (
     <div className={styles.wrapper}>
       {title && <h1 className={styles.title}>{title}</h1>}
-      {loading ? (
+      {loading && media.length === 0 ? (
         <ListSkeleton
           count={6}
           line={1}
@@ -72,7 +81,9 @@ export default function MediaList({
               freeMode
               navigation
               modules={[FreeMode, Navigation]}
-              style={{ width: '100%', paddingRight: '40px' }}>
+              style={{ width: '100%', paddingRight: '40px' }}
+              onReachEnd={handleReachEnd} // Infinite scroll trigger
+            >
               {items.map(item => (
                 <SwiperSlide
                   key={item.id}
