@@ -18,8 +18,8 @@ export default function Navbar() {
         <Link to="/">
           <li className={isActive('/') ? styles.active : ''}>Home</li>
         </Link>
-        <Link to="/new">
-          <li className={isActive('/new') ? styles.active : ''}>
+        <Link to="/trending">
+          <li className={isActive('/trending') ? styles.active : ''}>
             New & Popular
           </li>
         </Link>

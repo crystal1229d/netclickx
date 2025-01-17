@@ -1,4 +1,4 @@
-export const movies = {
+export const TRENDING_MOVIES = {
   page: 1,
   results: [
     {

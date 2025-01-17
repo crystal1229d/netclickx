@@ -1,24 +1,26 @@
-import { Movie } from '@/types'
+import { Media } from '@/types'
 import { useClick } from '@/hooks/useClick'
 import Poster from '@common/Poster'
 import styles from './Card.module.css'
 
 interface Props {
-  movie: Movie
-  onSingleClick: (movie: Movie) => void
-  onDoubleClick: (movie: Movie | Movie['id']) => void
+  media: Media
+  onSingleClick: (media: Media) => void
+  onDoubleClick: (media: Media | Media['id']) => void
   className?: string
 }
 
 export default function Card({
-  movie,
+  media,
   onSingleClick,
   onDoubleClick,
   className
 }: Props) {
-  const { title, poster_path } = movie
+  const { title, name, poster_path } = media
 
-  const handleClick = useClick<Movie>({
+  const displayTitle = title || name || ''
+
+  const handleClick = useClick<Media>({
     onSingleClick,
     onDoubleClick
   })
@@ -26,10 +28,10 @@ export default function Card({
   return (
     <li
       className={`${styles.card} ${className || ''}`}
-      onClick={() => handleClick(movie)}>
+      onClick={() => handleClick(media)}>
       <Poster
         src={`${import.meta.env.VITE_TMDB_IMAGE_BASE_URL}w185/${poster_path}`}
-        alt={title}
+        alt={displayTitle}
       />
     </li>
   )

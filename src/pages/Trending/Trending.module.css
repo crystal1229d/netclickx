@@ -1,0 +1,14 @@
+.wrapper {
+  width: 100%;
+  padding: 20px;
+  color: var(--white);
+}
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+
+  list-style: none;
+  padding: 0;
+}

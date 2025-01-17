@@ -1,47 +1,37 @@
-import { useMoviesStore } from '@/stores/movie'
-import { Movie } from '@/types'
+import { useMediaStore } from '@/stores'
+import { Media } from '@/types'
 import { useModalContext } from '@/contexts/ModalContext'
 import ConditionalRender from '@common/ConditionalRender'
 import Card from '@common/Card'
+import DetailModal from '@common/DetailModal'
+
 import styles from './MyList.module.css'
 
 export default function MyListPage() {
   const { openModal } = useModalContext()
-  const { removeMovie, selectedMovies } = useMoviesStore()
+  const { removeMedia, selectedMedia } = useMediaStore()
 
-  const handleSingleClick = (movie: Movie) => {
-    const { title, backdrop_path, overview } = movie
-
-    openModal(
-      <div>
-        <img
-          src={`${import.meta.env.VITE_TMDB_IMAGE_BASE_URL}w500/${backdrop_path}`}
-          alt={title}
-          className={styles.modalImage}
-        />
-        <h2>{title}</h2>
-        <p>{overview}</p>
-      </div>
-    )
+  const handleSingleClick = (media: Media) => {
+    openModal(<DetailModal media={media} />)
   }
 
-  const handleDoubleClick = (id: Movie['id']) => {
-    removeMovie(id)
+  const handleDoubleClick = (id: Media['id']) => {
+    removeMedia(id)
   }
 
   return (
     <div className={styles.wrapper}>
       <h1 className={styles.title}>My List</h1>
       <ConditionalRender
-        items={selectedMovies}
-        render={movies => (
+        items={selectedMedia}
+        render={media => (
           <ul className={styles.list}>
-            {movies.map(movie => (
+            {media.map(medium => (
               <Card
-                key={movie.id}
-                movie={movie}
+                key={medium.id}
+                media={medium}
                 onSingleClick={handleSingleClick}
-                onDoubleClick={() => handleDoubleClick(movie.id)}
+                onDoubleClick={() => handleDoubleClick(medium.id)}
               />
             ))}
           </ul>

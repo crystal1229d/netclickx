@@ -1,17 +1,14 @@
-import { Movie } from '@/types'
-// import { TRENDING_MOVIES } from '@/data'
+import { Media } from '@/types'
+// import { TRENDING_ALL } from '@/data'
 
-export const fetchTrendingMovies = async (
+export const fetchTrendingAll = async (
   page: number = 1
-): Promise<Movie[] | []> => {
+): Promise<Media[] | []> => {
   // await new Promise(resolve => setTimeout(resolve, 1000))
-  // const paginatedData = TRENDING_MOVIES.results.slice(
-  //   (page - 1) * 20,
-  //   page * 20
-  // )
+  // const paginatedData = TRENDING_ALL.results.slice((page - 1) * 20, page * 20)
   // return paginatedData
 
-  const url = `${import.meta.env.VITE_TMDB_API_URL}/trending/movie/day?language=en-US&page=${page}`
+  const url = `${import.meta.env.VITE_TMDB_API_URL}/trending/all/day?language=en-US&page=${page}`
   const options = {
     method: 'GET',
     headers: {

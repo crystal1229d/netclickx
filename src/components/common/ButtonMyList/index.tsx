@@ -1,35 +1,36 @@
 import { useEffect, useState } from 'react'
 import { TiStarOutline, TiStar } from 'react-icons/ti'
-import { Movie } from '@/types'
-import { useMoviesStore } from '@/stores/movie'
+import { Media } from '@/types'
+import { useMediaStore } from '@/stores'
 import { useModalContext } from '@/contexts/ModalContext'
 import ConditionalRender from '@common/ConditionalRender'
 import Card from '@common/Card'
-import styles from './ButtonMyList.module.css'
+import DetailModal from '@common/DetailModal'
 
 import { Swiper, SwiperSlide } from 'swiper/react'
+import { FreeMode } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/effect-coverflow'
 import 'swiper/css/pagination'
-import { FreeMode } from 'swiper/modules'
-import Poster from '../Poster'
+
+import styles from './ButtonMyList.module.css'
 
 export default function ButtonMyList() {
   const [isOpen, setIsOpen] = useState(false)
   const { openModal } = useModalContext()
   const {
-    removeMovie,
-    selectedMovies,
+    removeMedia,
+    selectedMedia,
     isMyListBtnBouncing,
     setIsMyListBtnBouncing
-  } = useMoviesStore()
+  } = useMediaStore()
 
-  const [displayedMovies, setDisplayedMovies] = useState<Movie[]>([])
+  const [displayedMedia, setDisplayedMedia] = useState<Media[]>([])
   const [visibleCount, setVisibleCount] = useState(7)
 
   useEffect(() => {
-    setDisplayedMovies(selectedMovies.slice(0, visibleCount))
-  }, [selectedMovies, visibleCount])
+    setDisplayedMedia(selectedMedia.slice(0, visibleCount))
+  }, [selectedMedia, visibleCount])
 
   useEffect(() => {
     if (isMyListBtnBouncing) {
@@ -44,27 +45,16 @@ export default function ButtonMyList() {
     setIsOpen(prev => !prev)
   }
 
-  const handleSingleClick = (movie: Movie) => {
-    const { title, backdrop_path, overview } = movie
-
-    openModal(
-      <div>
-        <Poster
-          src={`${import.meta.env.VITE_TMDB_IMAGE_BASE_URL}w500/${backdrop_path}`}
-          alt={title}
-        />
-        <h2>{title}</h2>
-        <p>{overview}</p>
-      </div>
-    )
+  const handleSingleClick = (media: Media) => {
+    openModal(<DetailModal media={media} />)
   }
 
-  const handleDoubleClick = (id: Movie['id']) => {
-    removeMovie(id)
+  const handleDoubleClick = (id: Media['id']) => {
+    removeMedia(id)
   }
 
   const handleReachEnd = () => {
-    if (visibleCount >= selectedMovies.length) return
+    if (visibleCount >= selectedMedia.length) return
     setVisibleCount(prev => prev + 5)
   }
 
@@ -79,8 +69,8 @@ export default function ButtonMyList() {
       {isOpen && (
         <div className={styles.floatingPanel}>
           <ConditionalRender
-            items={displayedMovies}
-            render={movies => (
+            items={displayedMedia}
+            render={media => (
               <Swiper
                 slidesPerView="auto"
                 spaceBetween={40}
@@ -88,15 +78,15 @@ export default function ButtonMyList() {
                 modules={[FreeMode]}
                 style={{ width: '100%', paddingRight: '40px' }}
                 onReachEnd={handleReachEnd}>
-                {movies.map(movie => (
+                {media.map(medium => (
                   <SwiperSlide
-                    key={movie.id}
+                    key={medium.id}
                     style={{ width: '120px' }}>
                     <Card
-                      key={movie.id}
-                      movie={movie}
+                      key={medium.id}
+                      media={medium}
                       onSingleClick={handleSingleClick}
-                      onDoubleClick={() => handleDoubleClick(movie.id)}
+                      onDoubleClick={() => handleDoubleClick(medium.id)}
                       className={styles.card}
                     />
                   </SwiperSlide>

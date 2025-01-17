@@ -3,16 +3,13 @@ import { create } from 'zustand'
 
 interface MoviesStore {
   selectedMovies: Movie[]
-  isMyListBtnBouncing: boolean
 
   addMovie: (movie: Movie) => void
   removeMovie: (movieId: number) => void
-  setIsMyListBtnBouncing: (state: boolean) => void
 }
 
 export const useMoviesStore = create<MoviesStore>(set => ({
   selectedMovies: [],
-  isMyListBtnBouncing: false,
 
   addMovie: movie =>
     set(state => {
@@ -21,14 +18,11 @@ export const useMoviesStore = create<MoviesStore>(set => ({
         return state
       }
       return {
-        selectedMovies: [...state.selectedMovies, movie],
-        isMyListBtnBouncing: true
+        selectedMovies: [...state.selectedMovies, movie]
       }
     }),
   removeMovie: movieId =>
     set(state => ({
       selectedMovies: state.selectedMovies.filter(m => m.id !== movieId)
-    })),
-  setIsMyListBtnBouncing: (state: boolean) =>
-    set({ isMyListBtnBouncing: state })
+    }))
 }))
