@@ -17,6 +17,8 @@ export interface BaseMedia {
   name?: string
   video?: boolean
   origin_country?: string[]
+  release_date?: string
+  first_air_date?: string
 }
 
 export type Media = Movie | Tv
