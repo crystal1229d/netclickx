@@ -10,6 +10,8 @@ import {
 } from '@/services'
 
 import styles from './Home.module.css'
+import PreviewBanner from '@/components/common/PreviewBanner'
+import { TRENDING_ALL } from '@/data'
 
 export default function HomePage() {
   const { openModal } = useModalContext()
@@ -25,6 +27,7 @@ export default function HomePage() {
 
   return (
     <div className={styles.wrapper}>
+      <PreviewBanner media={TRENDING_ALL.results[0]} />
       <MediaList
         title="Trending Now"
         fetchData={fetchTrendingAll}

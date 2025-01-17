@@ -1,17 +1,12 @@
 import { Media } from '@/types'
-import { useMediaStore } from '@/stores'
 import Poster from '@common/Poster'
-import { SlArrowRight } from 'react-icons/sl'
-
-import styles from './DetailModal.module.css'
+import styles from './PreviewBanner.module.css'
 
 interface Props {
   media: Media
 }
 
-export default function DetailModal({ media }: Props) {
-  const { addMedia } = useMediaStore()
-
+export default function PreviewBanner({ media }: Props) {
   const {
     title,
     name,
@@ -33,7 +28,7 @@ export default function DetailModal({ media }: Props) {
   return (
     <div className={styles.wrapper}>
       <Poster
-        src={`${import.meta.env.VITE_TMDB_IMAGE_BASE_URL}w500/${backdrop_path}`}
+        src={`${import.meta.env.VITE_TMDB_IMAGE_BASE_URL}w780/${backdrop_path}`}
         alt={alt}
       />
       <div className={styles.infoList}>
@@ -48,14 +43,6 @@ export default function DetailModal({ media }: Props) {
 
       <h2>{alt}</h2>
       <p className={styles.overview}>{overview}</p>
-
-      <button
-        type="button"
-        onClick={() => addMedia(media)}
-        className={styles.button}>
-        Add to MyList
-        <SlArrowRight size="1rem" />
-      </button>
     </div>
   )
 }
