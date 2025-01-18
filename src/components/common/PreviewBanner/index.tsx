@@ -1,40 +1,68 @@
-import { Media } from '@/types'
-import styles from './PreviewBanner.module.css'
-import { useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom'
+import { Media } from '@/types'
+import { useMediaStore } from '@/stores'
+import { fetchingNowPlaying } from '@/services'
+import { useModalContext } from '@/contexts/ModalContext'
+import { IoPlaySharp } from 'react-icons/io5'
+import DetailModal from '@common/DetailModal'
 
-interface Props {
-  media: Media
-}
+import styles from './PreviewBanner.module.css'
 
-export default function PreviewBanner({ media }: Props) {
+const PREVIEW_INTERVAL = 8000
+
+export default function PreviewBanner() {
   const location = useLocation()
-  const [currentPath, setCurrentPath] = useState('/')
+  const { addMedia } = useMediaStore()
+  const { openModal } = useModalContext()
+
+  const [currentPath, setCurrentPath] = useState<string>('/')
+  const [mediaList, setMediaList] = useState<Media[]>([])
+  const [previewMediaIdx, setPreviewMediaIdx] = useState<number>(0)
 
   useEffect(() => {
     setCurrentPath(location.pathname)
   }, [location.pathname])
 
-  if (currentPath !== '/') return null
+  useEffect(() => {
+    if (currentPath === '/') {
+      async function loadMedia() {
+        try {
+          const response = await fetchingNowPlaying()
+          setMediaList(response)
+        } catch (error) {
+          console.error('Failed to fetch media:', error)
+        }
+      }
+      loadMedia()
+    }
+  }, [currentPath])
+
+  useEffect(() => {
+    if (mediaList.length > 0) {
+      const interval = setInterval(() => {
+        setPreviewMediaIdx(prevIndex => (prevIndex + 1) % mediaList.length)
+      }, PREVIEW_INTERVAL)
+      return () => clearInterval(interval)
+    }
+  }, [mediaList])
+
+  if (currentPath !== '/' || mediaList.length === 0) return null
 
   const {
     title,
-    name,
     backdrop_path,
     overview,
     release_date,
-    first_air_date,
-    adult,
     media_type,
     vote_average,
-    vote_count
-  } = media
+    video
+  } = mediaList[previewMediaIdx] || {}
 
-  const alt = title || name || ''
-  const date = release_date || first_air_date
-  const displayedReleaseDate = date && date.split('-')[0]
-  const displayedAdult = adult ? '19+' : '15+'
-  const displayedMediaType = media_type === 'movie' ? '영화' : 'TV 시리즈'
+  const alt = title || ''
+  const displayedReleaseDate = release_date && release_date.split('-')[0]
+  const displayedVideo = video ? 'Yes' : 'No'
+  const displayedMediaType = media_type === 'movie' ? '영화' : 'Unknown'
 
   return (
     <div className={styles.wrapper}>
@@ -42,14 +70,30 @@ export default function PreviewBanner({ media }: Props) {
         <h2 className={styles.title}>{alt}</h2>
         <div className={styles.infoList}>
           <div className={styles.badge}>{displayedReleaseDate}</div>
-          <div className={styles.badge}>{displayedAdult}</div>
           <div className={styles.badge}>{displayedMediaType}</div>
-          <div className={styles.badge}>드라마 장르</div>
-          <div className={styles.badge}>
-            {vote_average} ({vote_count})
-          </div>
+          <div className={styles.badge}>Video: {displayedVideo}</div>
+          <div className={styles.badge}>Rating: {vote_average || 'N/A'}</div>
         </div>
+
         <p className={styles.overview}>{overview}</p>
+
+        <div className={styles.buttonsList}>
+          <button
+            type="button"
+            onClick={() => addMedia(mediaList[previewMediaIdx])}
+            className={styles.button}>
+            <IoPlaySharp size="1.3rem" />
+            Add to MyList
+          </button>
+          <button
+            type="button"
+            onClick={() =>
+              openModal(<DetailModal media={mediaList[previewMediaIdx]} />)
+            }
+            className={`${styles.button} ${styles.info}`}>
+            More Info
+          </button>
+        </div>
       </div>
 
       <div
@@ -57,8 +101,6 @@ export default function PreviewBanner({ media }: Props) {
         style={{
           backgroundImage: `
             linear-gradient(to right, rgba(26, 25, 25, 1.1) 0%, rgba(26, 25, 25, 0) 100%),
-            linear-gradient(to top, rgba(26, 25, 25) 0%, rgba(26, 25, 25, 0.8) 1%,  rgba(26, 25, 25, 0) 5%),
-            linear-gradient(to bottom, rgba(26, 25, 25) 0%, rgba(26, 25, 25, 0.8) 1%, rgba(26, 25, 25, 0) 5%),
             url('${import.meta.env.VITE_TMDB_IMAGE_BASE_URL}w780/${backdrop_path}')
           `
         }}></div>

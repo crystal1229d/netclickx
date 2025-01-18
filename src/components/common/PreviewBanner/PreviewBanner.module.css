@@ -68,7 +68,43 @@
   z-index: 1;
   overflow: hidden;
 
-  background-size: 80%;
+  background-size: 82%;
   background-repeat: no-repeat;
   background-position: right center;
+}
+
+.buttonsList {
+  width: 100%;
+  display: flex;
+  gap: 15px;
+}
+
+.button {
+  padding: 10px 22px;
+  margin-top: 25px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+
+  font-size: 1.2rem;
+  font-weight: 800;
+  border-radius: 3px;
+  background: var(--white);
+  color: var(--background);
+
+  transition: transform 0.1s ease;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+.button svg {
+  margin-bottom: 3px;
+}
+.button.info {
+  background: var(--gray);
+  color: var(--white);
+  opacity: 0.7;
 }
