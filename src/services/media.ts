@@ -23,7 +23,10 @@ export const fetchTrendingAll = async (
       throw new Error('Failed to fetch movies')
     }
     const data = await response.json()
-    return data.results
+    const filteredResults = data.results.filter(
+      (item: Media) => item.media_type !== 'person'
+    )
+    return filteredResults
   } catch (error) {
     console.error(error)
     return []
