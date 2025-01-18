@@ -7,7 +7,7 @@ interface Props {
 }
 
 export default function Logo({ linked = true, to = '/' }: Props) {
-  const logoContent = <div className={styles.logo}>netclicks</div>
+  const logoContent = <div className={styles.logo}>netclickx</div>
 
   return linked ? <Link to={{ pathname: to }}>{logoContent}</Link> : logoContent
 }

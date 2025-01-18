@@ -1,6 +1,7 @@
 .wrapper main {
   width: 95vw;
-  margin: 100px auto 164px auto; /* Header와 Footer의 height 고려 */
+  /* margin: 100px auto 164px auto; */ /* Header와 Footer의 height 고려 */
+  margin: 0 auto 164px auto;
 
   display: flex;
   align-items: center;

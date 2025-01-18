@@ -1,28 +1,74 @@
 .wrapper {
   width: 100%;
-  height: 400px;
+  height: 530px;
+  margin-top: 70px;
+
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  color: var(--white);
+  overflow: hidden;
+}
+
+.infoSection {
+  width: 45%;
+  height: 100%;
+  padding: 20px;
+
   display: flex;
   flex-direction: column;
+  justify-content: center;
+
+  position: relative;
+  z-index: 2;
+}
+.infoSection::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1; /* Content 뒤로 배치 */
+  pointer-events: none;
+  background: linear-gradient(to left, transparent, var(--background) 100%);
+}
+
+.title {
+  font-size: 3rem;
+  margin-bottom: 20px;
 }
 
 .infoList {
-  width: 100%;
-  margin-bottom: 25px;
-
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
+  margin-bottom: 20px;
 }
 
 .badge {
   padding: 2px 5px;
-
   font-size: 0.75rem;
   border-radius: 3px;
   background: var(--gray);
-  color: var(--white);
 }
 
 .overview {
   max-height: 100px;
   overflow-y: auto;
+}
+
+.imageWrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  overflow: hidden;
+
+  background-size: 80%;
+  background-repeat: no-repeat;
+  background-position: right center;
 }

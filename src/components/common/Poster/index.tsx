@@ -4,9 +4,10 @@ import styles from './Poster.module.css'
 interface Props {
   src: string
   alt: string
+  className?: string
 }
 
-export default function Poster({ src, alt }: Props) {
+export default function Poster({ src, alt, className }: Props) {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
@@ -23,7 +24,7 @@ export default function Poster({ src, alt }: Props) {
   }, [src])
 
   return (
-    <div className={styles.posterWrapper}>
+    <div className={`${styles.posterWrapper} ${className || ''}`}>
       {isLoading && <div className={styles.skeleton}></div>}
       <img
         src={src}
