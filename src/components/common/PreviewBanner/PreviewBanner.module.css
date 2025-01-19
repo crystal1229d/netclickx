@@ -101,3 +101,47 @@
   color: var(--white);
   opacity: 0.7;
 }
+
+@media (max-width: 844px) {
+  .wrapper {
+    height: 350px;
+  }
+
+  .title {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+
+  .infoSection {
+    width: 90%;
+  }
+
+  .infoList {
+    display: none;
+  }
+
+  .overview {
+    display: none;
+  }
+
+  .buttonsList {
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+  }
+  .button {
+    padding: 10px;
+    margin-top: 0;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .title {
+    font-size: 2rem;
+  }
+
+  .buttonsList {
+    display: none;
+  }
+}
