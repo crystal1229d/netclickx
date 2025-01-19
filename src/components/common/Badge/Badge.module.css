@@ -1,0 +1,14 @@
+.wrapper {
+  max-height: 1.5rem;
+  padding: 2px 7px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 0.75rem;
+  border-radius: 3px;
+  background: var(--gray);
+  color: var(--white);
+  cursor: pointer;
+}

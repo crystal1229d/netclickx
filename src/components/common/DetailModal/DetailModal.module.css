@@ -8,16 +8,8 @@
   margin-bottom: 25px;
 
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
-}
-
-.badge {
-  padding: 2px 5px;
-
-  font-size: 0.75rem;
-  border-radius: 3px;
-  background: var(--gray);
-  color: var(--white);
 }
 
 .overview {

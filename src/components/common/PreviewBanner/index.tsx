@@ -4,8 +4,10 @@ import { Media } from '@/types'
 import { useMediaStore } from '@/stores'
 import { fetchingNowPlaying } from '@/services'
 import { useModalContext } from '@/contexts/ModalContext'
+import { getAgeLimit, getGenre, getMediaType, getReleaseDate } from '@/utils'
 import { IoPlaySharp } from 'react-icons/io5'
 import DetailModal from '@common/DetailModal'
+import Badge from '@common/Badge'
 
 import styles from './PreviewBanner.module.css'
 
@@ -51,28 +53,36 @@ export default function PreviewBanner() {
 
   const {
     title,
+    name,
     backdrop_path,
     overview,
     release_date,
+    first_air_date,
+    adult,
+    genre_ids,
     media_type,
     vote_average,
-    video
+    vote_count
   } = mediaList[previewMediaIdx] || {}
 
-  const alt = title || ''
-  const displayedReleaseDate = release_date && release_date.split('-')[0]
-  const displayedVideo = video ? 'Yes' : 'No'
-  const displayedMediaType = media_type === 'movie' ? '영화' : 'Unknown'
+  const alt = title || name
+  const genreNames = getGenre(genre_ids)
 
   return (
     <div className={styles.wrapper}>
       <div className={styles.infoSection}>
         <h2 className={styles.title}>{alt}</h2>
         <div className={styles.infoList}>
-          <div className={styles.badge}>{displayedReleaseDate}</div>
-          <div className={styles.badge}>{displayedMediaType}</div>
-          <div className={styles.badge}>Video: {displayedVideo}</div>
-          <div className={styles.badge}>Rating: {vote_average || 'N/A'}</div>
+          <Badge label={getReleaseDate(release_date || first_air_date)} />
+          <Badge label={getAgeLimit(adult)} />
+          <Badge label={getMediaType(media_type)} />
+          {genreNames.map((name, index) => (
+            <Badge
+              key={index}
+              label={name}
+            />
+          ))}
+          <Badge label={`Rating : ${vote_average} (${vote_count})`} />
         </div>
 
         <p className={styles.overview}>{overview}</p>

@@ -1,7 +1,9 @@
 import { Media } from '@/types'
 import { useMediaStore } from '@/stores'
-import Poster from '@common/Poster'
+import { getAgeLimit, getGenre, getMediaType, getReleaseDate } from '@/utils'
 import { SlArrowRight } from 'react-icons/sl'
+import Poster from '@common/Poster'
+import Badge from '@common/Badge'
 
 import styles from './DetailModal.module.css'
 
@@ -20,15 +22,13 @@ export default function DetailModal({ media }: Props) {
     release_date,
     first_air_date,
     adult,
+    genre_ids,
     media_type,
     vote_average,
     vote_count
   } = media
   const alt = title || name || ''
-  const date = release_date || first_air_date
-  const displayedReleaseDate = date && date.split('-')[0]
-  const displayedAdult = adult ? '19+' : '15+'
-  const displayedMediaType = media_type === 'movie' ? '영화' : 'TV 시리즈'
+  const genreNames = getGenre(genre_ids)
 
   return (
     <div className={styles.wrapper}>
@@ -37,13 +37,16 @@ export default function DetailModal({ media }: Props) {
         alt={alt}
       />
       <div className={styles.infoList}>
-        <div className={styles.badge}>{displayedReleaseDate}</div>
-        <div className={styles.badge}>{displayedAdult}</div>
-        <div className={styles.badge}>{displayedMediaType}</div>
-        <div className={styles.badge}>드라마 장르</div>
-        <div className={styles.badge}>
-          {vote_average} ({vote_count})
-        </div>
+        <Badge label={getReleaseDate(release_date || first_air_date)} />
+        <Badge label={getAgeLimit(adult)} />
+        <Badge label={getMediaType(media_type)} />
+        {genreNames.map((name, index) => (
+          <Badge
+            key={index}
+            label={name}
+          />
+        ))}
+        <Badge label={`Rating : ${vote_average} (${vote_count})`} />
       </div>
 
       <h2>{alt}</h2>
