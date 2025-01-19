@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import { Media } from '@/types'
 import { useClick } from '@/hooks/useClick'
 import Poster from '@common/Poster'
@@ -10,14 +11,13 @@ interface Props {
   className?: string
 }
 
-export default function Card({
+export default memo(function Card({
   media,
   onSingleClick,
   onDoubleClick,
   className
 }: Props) {
   const { title, name, poster_path } = media
-
   const displayTitle = title || name || ''
 
   const handleClick = useClick<Media>({
@@ -35,4 +35,4 @@ export default function Card({
       />
     </li>
   )
-}
+})

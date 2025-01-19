@@ -1,5 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useRef, useState, useCallback, ReactNode } from 'react'
 import { throttle } from 'lodash'
+import ListSkeleton from '../ListSkeleton'
 
 interface Props {
   loadMore: (page: number) => Promise<unknown>
@@ -21,7 +23,6 @@ export default function InfiniteScroll({
   const observerRef = useRef<IntersectionObserver | null>(null)
   const pageRef = useRef(page)
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const throttledLoadMore = useCallback(
     throttle(async () => {
       if (loading || !hasMore) return
@@ -30,8 +31,8 @@ export default function InfiniteScroll({
       await loadMore(newPage)
       setPage(newPage)
       pageRef.current = newPage
-    }, 1000),
-    [loading, hasMore, loadMore]
+    }, 1500),
+    []
   )
 
   const handleObserver = useCallback(
@@ -55,7 +56,6 @@ export default function InfiniteScroll({
 
     return () => {
       if (loadMoreRef.current) {
-        // eslint-disable-next-line react-hooks/exhaustive-deps
         observerRef.current?.unobserve(loadMoreRef.current)
       }
     }
@@ -64,8 +64,8 @@ export default function InfiniteScroll({
   return (
     <div>
       {children}
+      {loading && <ListSkeleton count={15} />}
       {hasMore && <div ref={loadMoreRef} />}
-      {loading && <p>Loading...</p>}
     </div>
   )
 }

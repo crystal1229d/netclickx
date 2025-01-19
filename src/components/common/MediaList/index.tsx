@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect, useCallback } from 'react'
 import { Media } from '@/types'
-import ListSkeleton from '@common/ListSkeleton'
 import Card from '@common/Card'
 import ConditionalRender from '@common/ConditionalRender'
 
@@ -66,42 +65,34 @@ export default function MediaList({
   return (
     <div className={styles.wrapper}>
       {title && <h1 className={styles.title}>{title}</h1>}
-      {loading && media.length === 0 ? (
-        <ListSkeleton
-          count={6}
-          line={1}
-        />
-      ) : (
-        <ConditionalRender
-          items={media}
-          render={items => (
-            <Swiper
-              slidesPerView="auto"
-              spaceBetween={40}
-              freeMode
-              navigation
-              modules={[FreeMode, Navigation]}
-              style={{ width: '100%', paddingRight: '40px' }}
-              onReachEnd={handleReachEnd} // Infinite scroll trigger
-            >
-              {items.map(item => (
-                <SwiperSlide
+      <ConditionalRender
+        items={media}
+        render={items => (
+          <Swiper
+            slidesPerView="auto"
+            spaceBetween={40}
+            freeMode
+            navigation
+            modules={[FreeMode, Navigation]}
+            style={{ width: '100%', paddingRight: '40px' }}
+            onReachEnd={handleReachEnd}>
+            {items.map(item => (
+              <SwiperSlide
+                key={item.id}
+                style={{ width: '120px' }}>
+                <Card
                   key={item.id}
-                  style={{ width: '120px' }}>
-                  <Card
-                    key={item.id}
-                    media={item}
-                    onSingleClick={() => onSingleClick(item)}
-                    onDoubleClick={() => onDoubleClick(item)}
-                    className={styles.card}
-                  />
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          )}
-          emptyMessage="No media available."
-        />
-      )}
+                  media={item}
+                  onSingleClick={() => onSingleClick(item)}
+                  onDoubleClick={() => onDoubleClick(item)}
+                  className={styles.card}
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        )}
+        emptyMessage="No media available."
+      />
     </div>
   )
 }
