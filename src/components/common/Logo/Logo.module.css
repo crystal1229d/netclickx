@@ -10,7 +10,7 @@
   cursor: pointer;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
   .logo {
     margin: 0;
     padding: 0;
