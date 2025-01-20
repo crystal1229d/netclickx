@@ -32,3 +32,29 @@ export const fetchTrendingAll = async (
     return []
   }
 }
+
+export const searchAllByKeyword = async (
+  keyword: string = '',
+  page: number = 1
+): Promise<Media[] | []> => {
+  const url = `${import.meta.env.VITE_TMDB_API_URL}/search/keyword?query=${keyword}&page=${page}`
+  const options = {
+    method: 'GET',
+    headers: {
+      accept: 'application/json',
+      Authorization: `Bearer ${import.meta.env.VITE_TMDB_ACCESS_TOKEN}`
+    }
+  }
+
+  try {
+    const response = await fetch(url, options)
+    if (!response.ok) {
+      throw new Error('Failed to fetch media')
+    }
+    const data = await response.json()
+    return data.results
+  } catch (error) {
+    console.error(error)
+    return []
+  }
+}

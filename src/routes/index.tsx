@@ -1,8 +1,9 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Layout from '@layout/Layout'
-import HomePage from '@/app/Home'
-import MyListPage from '@/app/MyList'
-import TrendingPage from '@/app/Trending'
+import HomePage from '@/pages/Home'
+import TrendingPage from '@/pages/Trending'
+import MyListPage from '@/pages/MyList'
+import SearchPage from '@/pages/Search'
 
 export default function Router() {
   return (
@@ -20,6 +21,10 @@ export default function Router() {
           <Route
             path="/mylist"
             element={<MyListPage />}
+          />
+          <Route
+            path="/search"
+            element={<SearchPage />}
           />
         </Routes>
       </Layout>
