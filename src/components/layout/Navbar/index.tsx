@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { RxHamburgerMenu } from 'react-icons/rx'
 import styles from './Navbar.module.css'
 
 export default function Navbar() {
@@ -29,8 +28,6 @@ export default function Navbar() {
             <li className={isActive('/mylist') ? styles.active : ''}>MyList</li>
           </Link>
         </ul>
-
-        <RxHamburgerMenu className={styles.hamburger} />
       </nav>
     </>
   )

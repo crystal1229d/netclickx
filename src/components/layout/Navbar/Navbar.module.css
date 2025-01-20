@@ -25,26 +25,8 @@
   color: var(--white);
 }
 
-.hamburger {
-  display: none;
-  color: white;
-  font-size: 2.2rem;
-  cursor: pointer;
-}
-.hamburger:hover {
-  opacity: 0.6;
-  transform: scale(1.1);
-}
-
 @media (max-width: 844px) {
   .navbar {
-    margin-right: 0;
-  }
-  .navbar ul {
     display: none;
-  }
-
-  .hamburger {
-    display: flex;
   }
 }
