@@ -1,7 +1,7 @@
 import React from 'react'
 import Header from '@layout/Header'
 import PreviewBanner from '@common/PreviewBanner'
-import Footer from '@layout/Footer'
+// import Footer from '@layout/Footer'
 import ButtonMyList from '@common/ButtonMyList'
 import styles from './Layout.module.css'
 
@@ -15,7 +15,7 @@ export default function Layout({ children }: Props) {
       <Header />
       <PreviewBanner />
       <main>{children}</main>
-      <Footer />
+      {/* <Footer /> */}
       <ButtonMyList />
     </div>
   )

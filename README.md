@@ -1,6 +1,6 @@
 <div align='center'>
 
-<img src='public/README/logo.png' alt='logo' height='50' />
+<img src='public/README/logo.PNG' alt='logo' height='50' />
 <br />
 <h2> 🎥 NETCLICKX 🎞️🎬 </h2>
 <br /><br />
