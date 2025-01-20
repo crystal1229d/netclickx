@@ -31,3 +31,22 @@
   opacity: 0.6;
   transform: scale(1.1);
 }
+.wrapper button > svg {
+  font-size: 1.7rem;
+}
+
+@media (max-width: 844px) {
+  .wrapper {
+    border-bottom: none;
+  }
+  .wrapper input {
+    display: none;
+  }
+  .wrapper button {
+    padding: 0;
+    margin-left: auto;
+  }
+  .wrapper button > svg {
+    font-size: 2rem;
+  }
+}

@@ -17,3 +17,21 @@
   z-index: 3;
   transition: 0.5s ease;
 }
+
+@media (max-width: 768px) {
+  .wrapper {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+  }
+
+  .wrapper > :nth-child(1) {
+    order: 2; /* Logo */
+  }
+  .wrapper > :nth-child(2) {
+    order: 1; /* Navbar */
+  }
+  .wrapper > :nth-child(3) {
+    order: 3; /* Search */
+  }
+}

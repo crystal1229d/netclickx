@@ -28,7 +28,7 @@ export default function Search() {
         placeholder="Search . . ."
       />
       <button type="submit">
-        <HiOutlineMagnifyingGlass size="1.4rem" />
+        <HiOutlineMagnifyingGlass />
       </button>
     </form>
   )
