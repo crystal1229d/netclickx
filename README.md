@@ -52,19 +52,19 @@
 
 <table>
   <tr>
-    <td><img src='/public/README/1-1.png' alt='preview' width='400' /></td>
-    <td><img src='/public/README/1-2.png' alt='preview' width='400' /></td>
+    <td><img src='/public/README/1-1.PNG' alt='preview' width='400' /></td>
+    <td><img src='/public/README/1-2.PNG' alt='preview' width='400' /></td>
   </tr>
   <tr>
-    <td><img src='/public/README/1-3.png' alt='preview' width='400' /></td>
-    <td><img src='/public/README/1-4.png' alt='preview' width='400' /></td>
+    <td><img src='/public/README/1-3.PNG' alt='preview' width='400' /></td>
+    <td><img src='/public/README/1-4.PNG' alt='preview' width='400' /></td>
   </tr>
   <tr>
-    <td><img src='/public/README/1-5.png' alt='preview' width='400' /></td>
-    <td><img src='/public/README/1-6.png' alt='preview' width='400' /></td>
+    <td><img src='/public/README/1-5.PNG' alt='preview' width='400' /></td>
+    <td><img src='/public/README/1-6.PNG' alt='preview' width='400' /></td>
   </tr>
   <tr>
-    <td><img src='/public/README/1-7.png' alt='preview' width='400' /></td>
+    <td><img src='/public/README/1-7.PNG' alt='preview' width='400' /></td>
     <td></td>
   </tr>
 </table>
@@ -73,27 +73,27 @@
 
 <br />
 
-<img src='/public/README/2-1.png' alt='preview' width='600' />
+<img src='/public/README/2-1.PNG' alt='preview' width='600' />
 <p>영화 상세정보</p>
 
 <br />
 
-<img src='/public/README/3-1.png' alt='preview' width='600' />
+<img src='/public/README/3-1.PNG' alt='preview' width='600' />
 <p>Trending All, Movies, TV 리스트</p>
 
 <br />
 
-<img src='/public/README/4-1.png' alt='preview' width='600' />
+<img src='/public/README/4-1.PNG' alt='preview' width='600' />
 <p>MyList</p>
 
 <br />
 
-<img src='/public/README/5-1.png' alt='preview' width='600' />
+<img src='/public/README/5-1.PNG' alt='preview' width='600' />
 <p>Trending All 페이지</p>
 
 <br />
 
-<img src='/public/README/6-1.png' alt='preview' width='600' />
+<img src='/public/README/6-1.PNG' alt='preview' width='600' />
 <p>MyList 페이지</p>
 
 <br />
