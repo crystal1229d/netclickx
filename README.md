@@ -9,7 +9,7 @@
 <p><b>Dejay 과제</b></p>
 <p>기간 : 205.01.13 - 2025.01.17</p>
 <p>목적: react에 중첩 이벤트의 구분 활용</p>
-<p>과제 내용:</p>
+<p>과제 내용</p>
 <ul>
   <li>영화 정보를 담은 배열 생성 (약 20개)</li>
   <li>페이지 구성
@@ -35,6 +35,8 @@
     </ul>
   </li>
 </ul>
+<p>개발 로그 : https://hospitable-collard-432.notion.site/NETCLICKX-177158316ad18086b3a6d5f4fa576425?pvs=4
+</p>
 </div>
 </div>
 
