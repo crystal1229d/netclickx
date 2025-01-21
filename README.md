@@ -44,7 +44,7 @@
 
 ## Preview / Features
 
-#### [netclickx.com](https:/netclickx.vercel.app)
+#### [netclickx.com](netclickx.vercel.app)
 
 <br />
 
