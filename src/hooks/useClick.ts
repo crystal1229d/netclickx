@@ -9,7 +9,7 @@ type Click<T> = {
 export function useClick<T>({
   onSingleClick,
   onDoubleClick,
-  delay = 300
+  delay = 530
 }: Click<T>) {
   const clickTimer = useRef<number | null>(null)
 

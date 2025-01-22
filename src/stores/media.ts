@@ -5,19 +5,25 @@ interface MediaStore {
   selectedMedia: Media[]
   isMyListBtnBouncing: boolean
 
+  mediaExists: (mediaId: number) => boolean
   addMedia: (media: Media) => void
   removeMedia: (mediaId: number) => void
   setIsMyListBtnBouncing: (state: boolean) => void
 }
 
-export const useMediaStore = create<MediaStore>(set => ({
+export const useMediaStore = create<MediaStore>((set, get) => ({
   selectedMedia: [],
   isMyListBtnBouncing: false,
 
+  mediaExists: mediaId => {
+    return get().selectedMedia.some(m => m.id === mediaId)
+  },
+
   addMedia: media =>
     set(state => {
-      const mediaExists = state.selectedMedia.some(m => m.id === media.id)
-      if (mediaExists) {
+      const { mediaExists, removeMedia } = get()
+      if (mediaExists(media.id)) {
+        removeMedia(media.id)
         return state
       }
       return {
@@ -25,10 +31,12 @@ export const useMediaStore = create<MediaStore>(set => ({
         isMyListBtnBouncing: true
       }
     }),
+
   removeMedia: mediaId =>
     set(state => ({
       selectedMedia: state.selectedMedia.filter(m => m.id !== mediaId)
     })),
+
   setIsMyListBtnBouncing: (state: boolean) =>
     set({ isMyListBtnBouncing: state })
 }))
